@@ -1,6 +1,7 @@
 fn main() {
     floating_point_types();
     bool_types();
+    characters();
 }
 
 fn floating_point_types() {
@@ -23,4 +24,14 @@ fn bool_types() {
 
     // uses a byte for bool value in memory,
     // so you can create a pointer to it
+}
+
+fn characters() {
+    // char: 32 bit value
+    // string: sequence of UTF-8 bytes
+    // enclosed in single quotes e.g. '8' or '!'
+    assert_eq!('*' as i32, 42);
+    assert_eq!('*'.is_alphabetic(), false);
+
+    assert_eq!(std::char::from_digit(2, 10), Some('2'));
 }
