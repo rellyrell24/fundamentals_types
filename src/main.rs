@@ -2,6 +2,10 @@ fn main() {
     floating_point_types();
     bool_types();
     characters();
+    bool_types();
+    boxes_type();
+    array_types();
+    vector_type();
 }
 
 fn floating_point_types() {
@@ -34,4 +38,70 @@ fn characters() {
     assert_eq!('*'.is_alphabetic(), false);
 
     assert_eq!(std::char::from_digit(2, 10), Some('2'));
+}
+
+fn boxes_type() {
+    let t = (12, "eggs");
+    let _b = Box::new(t);
+}
+
+fn array_types() {
+    let lazy_caterer: [u32; 6] = [1, 2, 4, 7, 11, 16];
+    let taxonomy = ["Animalia", "Arthropoda", "Insecta"];
+
+    assert_eq!(lazy_caterer[3], 7);
+    assert_eq!(taxonomy.len(), 3);
+
+    let mut sieve = [true; 10000];
+    for i in 2..100 {
+        if sieve[i] {
+            let mut j = i * i;
+            while j < 10000 {
+                sieve[j] = false;
+                j += i;
+            }
+        }
+    }
+    assert!(sieve[211]);
+    assert!(!sieve[9876]);
+
+    let mut chaos = [3, 5, 4, 1, 2];
+
+    chaos.sort();
+    assert_eq!(chaos, [1, 2, 3, 4, 5]);
+}
+
+fn vector_type() {
+    let mut primes = vec![2, 3, 5, 7];
+    assert_eq!(primes.iter().product::<i32>(), 210);
+
+    primes.push(11);
+    primes.push(13);
+    assert_eq!(primes.iter().product::<i32>(), 30030);
+
+    fn new_pixel_buffer(rows: usize, cols: usize) -> Vec<u8> {
+        vec![0; rows * cols]
+    }
+
+    new_pixel_buffer(1, 1);
+
+    let mut pal = Vec::new();
+    pal.push("step");
+    pal.push("on");
+    pal.push("no");
+    pal.push("pets");
+    assert_eq!(pal, vec!["step", "on", "no", "pets"]);
+
+    let mut v = Vec::with_capacity(2);
+    assert_eq!(v.len(), 0);
+    assert_eq!(v.capacity(), 2);
+
+    v.push(1);
+    v.push(2);
+    assert_eq!(v.len(), 2);
+    assert_eq!(v.capacity(), 2);
+
+    v.push(3);
+    assert_eq!(v.len(), 3);
+    println!("capacity is now {}", v.capacity());
 }
