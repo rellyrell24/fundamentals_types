@@ -7,6 +7,7 @@ fn main() {
     array_types();
     vector_type();
     slice_type();
+    string_type();
 }
 
 fn floating_point_types() {
@@ -111,8 +112,8 @@ fn slice_type() {
     let v: Vec<f64> = vec!  [0.0, 0.707, 1.0, 0.707];
     let a: [f64; 4] =       [0.0, -0.707, -1.0, -0.707];
 
-    let sv: &[f64] = &v;
-    let sa: &[f64] = &a;
+    let _sv: &[f64] = &v;
+    let _sa: &[f64] = &a;
 
     fn print(n: &[f64]) {
         for elt in n {
@@ -122,4 +123,48 @@ fn slice_type() {
 
     print(&a); // array
     print(&v); // vectors
+}
+
+fn string_type() {
+    // String literals
+    let speech = "\"Ouch!\" said the well.\n";
+    println!("{}", speech);
+
+    println!("In the room the women come and go,
+        Singing of Mount Abora");
+
+    println!("It was a bright, cold day in April, and \
+        there were four of us-\
+        more or less.");
+
+    let default_win_install_path = r"C:\Program Files\Gorilla";
+    println!("{}", default_win_install_path);
+
+    // let pattern = Regex::new(r"\d+(\,\d+)*");
+
+    println!(r###"
+        This raw string started with 'r###"'.
+        Therefore it does not end until we reach a quote mark ('"')
+        followed immediately by three pound signs ('###'):
+    "###);
+
+    // Byte strings
+    let method = b"GET"; // &[u8, 3]
+    assert_eq!(method, &[b'G', b'E', b'T']);
+
+    let method = br"GET"; // &[u8, 3] raw  
+    assert_eq!(method, &[b'G', b'E', b'T']);
+
+    let noodles = "noodles".to_string(); // String
+    let _oodles = &noodles[1..]; // &str
+    let poodles = "ಠ_ಠ"; // &str
+
+    assert_eq!(poodles.len(), 7);
+    assert_eq!(poodles.chars().count(), 3);
+
+    let s = "hello".to_lowercase();
+    println!("{}", s);
+
+    // &str -> &[T]
+    // String -> Vec<T>
 }
