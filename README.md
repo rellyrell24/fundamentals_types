@@ -35,7 +35,7 @@ Unsafe!
 
 ## Strings
 
-___ | Vec<T> | String
+___ | `Vec<T>` | `String`
 :---|:---:|:---:
 Automatically free buffers | Yes | Yes
 Growable | Yes | Yes
