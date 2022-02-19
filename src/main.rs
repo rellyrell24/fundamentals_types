@@ -6,6 +6,7 @@ fn main() {
     boxes_type();
     array_types();
     vector_type();
+    slice_type();
 }
 
 fn floating_point_types() {
@@ -104,4 +105,21 @@ fn vector_type() {
     v.push(3);
     assert_eq!(v.len(), 3);
     println!("capacity is now {}", v.capacity());
+}
+
+fn slice_type() {
+    let v: Vec<f64> = vec!  [0.0, 0.707, 1.0, 0.707];
+    let a: [f64; 4] =       [0.0, -0.707, -1.0, -0.707];
+
+    let sv: &[f64] = &v;
+    let sa: &[f64] = &a;
+
+    fn print(n: &[f64]) {
+        for elt in n {
+            println!("{}",  elt);
+        }
+    }
+
+    print(&a); // array
+    print(&v); // vectors
 }
