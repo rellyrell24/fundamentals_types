@@ -36,6 +36,7 @@ Unsafe!
 ## Strings
 
 ___ | Vec<T> | String
+   |   |
 Automatically free buffers | Yes | Yes
 Growable | Yes | Yes
 `::new()` and `::with_capacity()` type-associated functions | Yes | Yes
